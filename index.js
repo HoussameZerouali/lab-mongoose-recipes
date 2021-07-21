@@ -20,9 +20,12 @@ mongoose
     return Recipe.deleteMany()
   })
   .then(() => {
-    recipeModel.create(data[0])
+    recipeModel.insertMany(data)
      .then((createdDocument) => {
-       console.log(createdDocument.title)
+      for (let i = 0; i< createdDocument.length; i++){
+        console.log(createdDocument[i].title)
+      }  
+      
      })
   })
   .catch(error => {
