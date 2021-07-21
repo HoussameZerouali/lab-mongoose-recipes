@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Recipe = require('./models/Recipe.model');
 // Import of the data from './data.json'
 const data = require('./data');
-
+const recipeModel = mongoose.model("Recipe", Recipe.recipeSchema);
 const MONGODB_URI = 'mongodb://localhost:27017/recipe-app';
 
 // Connection to the database "recipe-app"
@@ -20,7 +20,10 @@ mongoose
     return Recipe.deleteMany()
   })
   .then(() => {
-    // Run your code here, after you have insured that the connection was made
+    recipeModel.create(data[0])
+     .then((createdDocument) => {
+       console.log(createdDocument.title)
+     })
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
