@@ -46,6 +46,22 @@ mongoose
       console.log("Updated document ====>", updatedDocument);
     })
       })
+      .then(() => {
+        recipeModel.findOneAndDelete(
+          {title: "Carrot Cake"}
+        ).then((deletedDocument) => {
+          console.log(deletedDocument);
+        })
+        .then(() => {
+          mongoose.connection.close();
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      })
       .catch((error) => {
         console.log(error);
       });
